@@ -11,7 +11,7 @@ fn read_file(file_path: &str) {
     };
     let mut contents = String::new();
     if let Err(e) = file.read_to_string(&mut contents) {
-        println!("Error reaidng file: {}", e);
+        println!("Error reading file: {}", e);
         return;
     }
     println!("File contents:\n{}", contents);
