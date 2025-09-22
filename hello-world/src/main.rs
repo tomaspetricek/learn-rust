@@ -8,6 +8,13 @@
 // run:     ./target/debug/hello-world
 // ## Single Step
 // cargo run
+//
+// # Check Compilability
+// cargo check
+//
+// # Compile without Optimizations
+// build: cargo build --release
+// run:   ./target/release/hello-world
 fn main() {
     println!("Hello, world!"); // the ! is present because it is a macros not a function
 }
