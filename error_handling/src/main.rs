@@ -6,6 +6,25 @@
 use std::fs::{self, File};
 use std::io::ErrorKind;
 use std::io::{self, Read};
+use std::net::IpAddr;
+
+
+pub struct Guess {
+    value: i32,
+}
+
+impl Guess {
+    pub fn new(value: i32) -> Guess {
+        if value < 1 || value > 100 {
+            panic!("guess value must be in range 1 to 100, got {value}");
+        }
+        Guess{value}
+    }
+
+    pub fn value(&self) -> i32 {
+        self.value
+    }
+}
 
 fn main() {
     println!("Hello, world!");
@@ -51,6 +70,13 @@ fn main() {
     let file = File::open("not_exist.txt").unwrap();
 
     let file = File::open("hello.txt").expect("hello.txt should be included in this project");
+
+    // when code panics there is no way to recover
+    let home: IpAddr = "127.0.0.1"
+        .parse()
+        .expect("hardcoded ip address should be valid"); // shall never fail
+
+    let guess = Guess::new(100);
 }
 
 fn read_username_from_file() -> Result<String, io::Error> {

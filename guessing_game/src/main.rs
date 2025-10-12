@@ -7,8 +7,8 @@ fn main() {
     println!("Guess the number!");
 
     let secret_number = rand::thread_rng().gen_range(1..=100); // random generator that is local to the thread,
-                                                               // is seeded by the operating system
-                                                               // start..=end range expression
+    // is seeded by the operating system
+    // start..=end range expression
 
     println!("The secret number is: {secret_number}");
 
@@ -32,6 +32,11 @@ fn main() {
                 continue;
             }
         };
+        if guess < 1 || guess > 100 {
+            println!("guess: {guess} out of range 1 to 100");
+            continue;
+        }
+
         println!("You guessed: {guess}"); // {} - is a placeholder
 
         match guess.cmp(&secret_number) {
