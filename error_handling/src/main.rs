@@ -8,7 +8,6 @@ use std::io::ErrorKind;
 use std::io::{self, Read};
 use std::net::IpAddr;
 
-
 pub struct Guess {
     value: i32,
 }
@@ -18,7 +17,7 @@ impl Guess {
         if value < 1 || value > 100 {
             panic!("guess value must be in range 1 to 100, got {value}");
         }
-        Guess{value}
+        Guess { value }
     }
 
     pub fn value(&self) -> i32 {
