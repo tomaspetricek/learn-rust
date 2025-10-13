@@ -1,4 +1,4 @@
-use aggregator::{notify, notify_v2, Book, SocialPost, Summary};
+use aggregator::{notify, notify_v2, Book, F32Extras, SocialPost, Summary};
 
 fn main() {
     let post = SocialPost {
@@ -22,4 +22,8 @@ fn main() {
     notify_v2(&post);
 
     let s = 10.to_string();
+
+    let val: f32 = 1.0;
+    println!("{val} squared is: {}", val.squared());
+    println!("{val} is near zero: {}", val.is_near_zero(0.001));
 }

@@ -100,3 +100,18 @@ impl<T: Display + PartialOrd> Pair<T> {
         }
     }
 }
+
+pub trait F32Extras {
+    fn squared(self) -> f32;
+    fn is_near_zero(self, eps: f32) -> bool;
+}
+
+impl F32Extras for f32 {
+    fn squared(self) -> f32 {
+        self * self
+    }
+
+    fn is_near_zero(self, eps: f32) -> bool {
+        self.abs() < eps
+    }
+}
