@@ -2,7 +2,6 @@ pub fn add(left: u64, right: u64) -> u64 {
     left + right
 }
 
-// to run all tests use: cargo run
 #[derive(Debug)]
 struct Rectangle {
     width: u32,
@@ -28,6 +27,17 @@ impl Guess {
     }
 }
 
+fn prints_and_returns_10(a: i32) -> i32 {
+    println!("I got the value: {a}");
+    10
+}
+
+// to run all tests use: cargo tes
+// to run all tests consecutively use: cargo test -- --test-threads=1
+// to see printed values for passing tests use: cargo test -- --show-output
+// to run specific test: cargo test add (all test whose names contain 'add' will be run)
+// to run only ignored tests: cargo test -- --ignored
+// to run all tests including the ignored ones use: cargo test -- --include-ignored
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -94,4 +104,28 @@ mod tests {
             Err(String::from("two plus two does not equal four"))
         }
     }
+
+    #[test]
+    fn this_test_will_pass() {
+        assert_eq!(10, prints_and_returns_10(50));
+    }
+
+    #[test]
+    fn this_test_will_fail() {
+        assert_eq!(5, prints_and_returns_10(42));
+    }
+
+    #[test]
+    fn add_v1() {
+        assert_eq!(add(10, 20), 30);
+    }
+
+    #[test]
+    fn add_v2() {
+        assert_eq!(10, add(1, 9));
+    }
+
+    #[test]
+    #[ignore]
+    fn expensive_test() {}
 }
