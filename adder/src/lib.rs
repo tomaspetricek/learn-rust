@@ -48,10 +48,10 @@ mod tests {
         assert_eq!(result, 4);
     }
 
-    #[test]
-    fn another() {
-        panic!("Make this test fail");
-    }
+    // #[test]
+    // fn another() {
+    //     panic!("Make this test fail");
+    // }
 
     #[test]
     fn larger_can_hold_smaller() {
@@ -79,14 +79,14 @@ mod tests {
         assert!(!smaller.can_hold(&larger));
     }
 
-    #[test]
-    fn greeting_contains_name() {
-        let result = String::from("Karol");
-        assert!(
-            result.contains("Carol"),
-            "greeting did not contain name, value was `{result}`" // provide custom failure message
-        );
-    }
+    // #[test]
+    // fn greeting_contains_name() {
+    //     let result = String::from("Karol");
+    //     assert!(
+    //         result.contains("Carol"),
+    //         "greeting did not contain name, value was `{result}`" // provide custom failure message
+    //     );
+    // }
 
     #[test]
     #[should_panic]
@@ -110,10 +110,10 @@ mod tests {
         assert_eq!(10, prints_and_returns_10(50));
     }
 
-    #[test]
-    fn this_test_will_fail() {
-        assert_eq!(5, prints_and_returns_10(42));
-    }
+    // #[test]
+    // fn this_test_will_fail() {
+    //     assert_eq!(5, prints_and_returns_10(42));
+    // }
 
     #[test]
     fn add_v1() {
