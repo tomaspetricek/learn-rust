@@ -1,4 +1,4 @@
-use minigrep::search;
+use minigrep::{search, search_case_insensitive};
 use std::env;
 use std::error::Error;
 use std::fs;
@@ -8,13 +8,13 @@ fn main() {
     // read command line arguments
     let args: Vec<String> = env::args().collect();
     let config = Config::build(&args).unwrap_or_else(|error| {
-        println!("problem parsing arguments: {error}");
+        eprintln!("problem parsing arguments: {error}");
         process::exit(1);
     });
     dbg!(&args);
 
     if let Err(e) = run(config) {
-        println!("Application error: {e}");
+        eprintln!("Application error: {e}");
         process::exit(1);
     }
 }
@@ -22,6 +22,7 @@ fn main() {
 struct Config {
     query: String,
     file_path: String,
+    ignore_case: bool,
 }
 
 impl Config {
@@ -31,14 +32,30 @@ impl Config {
         }
         let query = args[1].clone();
         let file_path = args[2].clone();
-        Ok(Self { query, file_path })
+
+        // checks whether the environment variable is set
+        // false - if not set to anything
+        let ignore_case = env::var("IGNORE_CASE").is_ok();
+        dbg!(ignore_case);
+
+        Ok(Self {
+            query,
+            file_path,
+            ignore_case,
+        })
     }
 }
 
 fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let contents = fs::read_to_string(config.file_path)?;
 
-    for line in search(&config.query, &contents) {
+    let results = if config.ignore_case {
+        search_case_insensitive(&config.query, &contents)
+    } else {
+        search(&config.query, &contents)
+    };
+
+    for line in results {
         println!("{line}");
     }
 
