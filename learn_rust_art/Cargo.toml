@@ -1,0 +1,8 @@
+[package]
+name = "learn_rust_art"
+version = "0.1.0"
+edition = "2024"
+description = "Library created by following a RUST course"
+license = "MIT OR Apache-2.0"
+
+[dependencies]
